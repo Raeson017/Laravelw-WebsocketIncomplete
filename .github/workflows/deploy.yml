@@ -53,9 +53,9 @@ jobs:
           ECR_REPOSITORY: app
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t laraapp .
-          docker tag laraapp:latest $ECR_REGISTRY/laraapp:$IMAGE_TAG
-          docker push $ECR_REGISTRY/laraapp:$IMAGE_TAG
+          docker build -t app .
+          docker tag app:latest $ECR_REGISTRY/app:$IMAGE_TAG
+          docker push $ECR_REGISTRY/app:$IMAGE_TAG
       - name: Build nginx
         id: build-nginx-image
         env:
