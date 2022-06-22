@@ -54,8 +54,8 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t laraapp .
-          docker tag laravel-app:latest $ECR_REGISTRY/laravel-app:$IMAGE_TAG
-          docker push $ECR_REGISTRY/laravel-app:$IMAGE_TAG
+          docker tag laraapp:latest $ECR_REGISTRY/laraapp:$IMAGE_TAG
+          docker push $ECR_REGISTRY/laraapp:$IMAGE_TAG
       - name: Build nginx
         id: build-nginx-image
         env:
@@ -75,7 +75,7 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: app
-          image: ${{ steps.login-ecr.outputs.registry }}/laravel-app:${{ github.sha }}
+          image: ${{ steps.login-ecr.outputs.registry }}/laraapp:${{ github.sha }}
         env:
           AWS_DEFAULT_REGION: ap-northeast-1
           AWS_REGION: ap-northeast-1
