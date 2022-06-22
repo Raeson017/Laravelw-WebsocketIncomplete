@@ -25,14 +25,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: "Install dependencies from composer.lock using composer binary provided by system"
-        run: composer install
+     # Runs a single command using the runners shell
+      - name: Composer validate/update
+        run: |
+          curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+          composer update
 
-      - name: "Validate composer.json"
-        run: composer validate
-
-      - name: Build phar file
-        run: php -d phar.readonly=0 bin/compile
           
       - name: Directory Permissions
         run: chmod -R 777 ./    
