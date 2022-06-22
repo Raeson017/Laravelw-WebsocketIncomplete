@@ -101,4 +101,4 @@ jobs:
           task-definition: ${{ steps.web-task-def.outputs.task-definition }}
           service: raeserv
           cluster: rabCluster
-          wait-for-service-stability: true
+          wait-for-service-stability: true 
