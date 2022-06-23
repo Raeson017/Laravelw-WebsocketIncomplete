@@ -38,8 +38,8 @@ return [
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'encrypted' => true,
-                'host' => 'rabdb.chn7xxkgkllk.ap-southeast-2.rds.amazonaws.com',
-                'port' => 6001,
+                'host' => 'rabLB-1280245802.ap-southeast-2.elb.amazonaws.com',
+                'port' => 8080,
                 'scheme' => 'http',
                 //'encrypted' => true,
                 
