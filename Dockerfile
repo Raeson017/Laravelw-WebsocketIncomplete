@@ -24,6 +24,8 @@ RUN composer require beyondcode/laravel-websockets
 RUN php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="migrations"
 RUN php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="config"
 RUN php artisan migrate
+RUN php artisan serve
+RUN php artisan websockets:serve
 
 
 RUN apk add autoconf && pecl install -o -f redis \
