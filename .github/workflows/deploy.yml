@@ -51,7 +51,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: app
-          IMAGE_TAG: latest
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t app .
           docker tag app:latest $ECR_REGISTRY/app:$IMAGE_TAG
@@ -61,7 +61,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: laranginx
-          IMAGE_TAG: latest
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build . -f Dockerfile_Nginx -t laranginx
           docker tag laranginx:latest $ECR_REGISTRY/laranginx:$IMAGE_TAG
@@ -75,7 +75,7 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: app
-          image: ${{ steps.login-ecr.outputs.registry }}/laraapp:latest
+          image: ${{ steps.login-ecr.outputs.registry }}/laraapp:${{ github.sha }}
         env:
           AWS_DEFAULT_REGION: ap-southeast-2
           AWS_REGION: ap-southeast-2
@@ -88,7 +88,7 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: laranginx
-          image: ${{ steps.login-ecr.outputs.registry }}/laranginx:latest
+          image: ${{ steps.login-ecr.outputs.registry }}/laranginx:${{ github.sha }}
         env:
           AWS_DEFAULT_REGION: ap-southeast-2
           AWS_REGION: ap-southeast-2
@@ -98,7 +98,7 @@ jobs:
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: task-definition.json
+          task-definition: ${{ steps.web-task-def.outputs.task-definition }}
           service: raeserv
           cluster: rabCluster
           wait-for-service-stability: true
