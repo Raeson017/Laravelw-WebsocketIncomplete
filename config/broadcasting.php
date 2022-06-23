@@ -41,7 +41,7 @@ return [
                 'host' => '127.0.0.1',
                 'port' => 6001,
                 'scheme' => 'http',
-                
+                //'encrypted' => true,
                 
             ],
             'client_options' => [
