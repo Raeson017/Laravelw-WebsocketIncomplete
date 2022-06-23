@@ -75,7 +75,7 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: app
-          image: ${{ steps.login-ecr.outputs.registry }}/laraapp:${{ github.sha }}
+          image: ${{ steps.login-ecr.outputs.registry }}/laraapp:latest
         env:
           AWS_DEFAULT_REGION: ap-southeast-2
           AWS_REGION: ap-southeast-2
@@ -88,7 +88,7 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: laranginx
-          image: ${{ steps.login-ecr.outputs.registry }}/laranginx:${{ github.sha }}
+          image: ${{ steps.login-ecr.outputs.registry }}/laranginx:latest
         env:
           AWS_DEFAULT_REGION: ap-southeast-2
           AWS_REGION: ap-southeast-2
