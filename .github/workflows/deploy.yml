@@ -30,7 +30,6 @@ jobs:
         run: |
           curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
           composer update
-
           
       - name: Directory Permissions
         run: chmod -R 777 ./    
@@ -101,4 +100,4 @@ jobs:
           task-definition: ${{ steps.web-task-def.outputs.task-definition }}
           service: raeserv
           cluster: rabCluster
-          wait-for-service-stability: true
+          wait-for-service-stability: true 
